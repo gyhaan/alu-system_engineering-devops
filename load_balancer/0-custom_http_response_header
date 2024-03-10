@@ -1,16 +1,19 @@
 #!/usr/bin/env bash
 # a script to install nginx web server & make the following configurations:
 
-sudo apt-get update
-sudo apt-get install -y nginx
+apt-get update
+apt-get install -y nginx
+
+mkdir /etc/nginx/html
+
+touch /etc/nginx/html/index.html
 
 
-"Holberton School" | sudo tee /var/www/html/index.html
+echo "Holberton School" > /var/www/html/index.html
 
 # Create custom 404 error page
-"Ceci n'est pas une page" | sudo tee /var/www/html/error_404.html
-
-echo "server {
+Ceci n'est pas une page" | sudo tee /var/www/html/error_404.html
+printf %s "server {
      listen      80 default_server;
      listen      [::]:80 default_server;
      root        /var/www/html;
@@ -22,5 +25,5 @@ echo "server {
         internal;
      }
 }
-" | sudo tee /etc/nginx/sites-available/default
-
+" > /etc/nginx/sites-available/default
+service nginx restart
