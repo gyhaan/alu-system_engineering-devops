@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#script debugs nginx 
+sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+service nginx restart
